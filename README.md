@@ -40,3 +40,7 @@ if condicao {
 }
 ```
 
+
+# Aula 30/03/2022
+Prompt GPT exercicios:
+- https://chat.openai.com/share/9d5db18d-33d3-463a-b06a-bbc0a84bea29
