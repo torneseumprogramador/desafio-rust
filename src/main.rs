@@ -26,6 +26,70 @@ fn mostrar_mensagem(mensagem: &str){
     esperar(2);
 }
 
+fn capturar_notas_aluno(nome_aluno: &String, notas: &mut Vec<f32>){
+    println!("Digite a nota do(a) {}: (ou 'fim' para concluir)", nome_aluno);
+    let mut nota_str = String::new();
+    io::stdin().read_line(&mut nota_str).unwrap();
+
+    if nota_str.trim().to_lowercase().contains("fim") {
+        limpar_tela();
+        return;
+    }
+
+    let nota: f32 = match nota_str.trim().parse() {
+        Ok(num) => num,
+        Err(_) => {
+            mostrar_mensagem("Nota inválida, digite novamente ...");
+            return capturar_notas_aluno(nome_aluno, notas);
+        },
+    };
+    notas.push(nota);
+
+    mostrar_mensagem("Nota adicionada com sucesso, vamos para a próxima nota ...");
+
+    return capturar_notas_aluno(nome_aluno, notas);
+}
+
+fn cadastrar_aluno(alunos: &mut Vec<(String, String, Vec<f32>)> ){
+    let mut nome = String::new();
+    let mut matricula = String::new();
+    
+    println!("Digite o nome do aluno: ");
+    io::stdin().read_line(&mut nome).unwrap();
+    nome = nome.trim().to_string();
+
+    println!("Digite a matrícula do aluno: ");
+    io::stdin().read_line(&mut matricula).unwrap();
+    matricula = matricula.trim().to_string();
+
+    let mut notas: Vec<f32> = Vec::new();
+    capturar_notas_aluno(&nome, &mut notas);
+
+    alunos.push((nome, matricula, notas));
+}
+
+fn listar_alunos(alunos: &Vec<(String, String, Vec<f32>)>){
+    limpar_tela();
+    if alunos.len() == 0 {
+        mostrar_mensagem("Nenhum aluno cadastrado");
+        return;
+    }
+
+    for aluno_tupla in alunos.iter(){
+        let (nome, matricula, notas) = aluno_tupla;
+        println!("{}", "-".repeat(40));
+        println!("Nome: {}", nome);
+        println!("Matricula: {}", matricula);
+        println!("Notas: {:?}", notas);
+    }
+    
+    println!("\n\nDigite enter para continuar...");
+    let mut continuar  = String::new();
+    io::stdin().read_line(&mut continuar).unwrap();
+
+    limpar_tela();
+}
+
 fn main(){
     /*
     === Passo 1: ===
@@ -47,8 +111,18 @@ fn main(){
     faça a implementação da opção 1 e da opção 4
     o que colocar no cadastro de aluno
     nome, matricula, notas{vetor(f32)}
+
+
+
+    amanha
+    - vericiar a parte 2 do exercicio dos alunos
+    - fazer correções sobre o exercicio
+    - o que é o hashmap e onde ele entra neste contexto
+    - o que é a struct e onde ela entra neste contexto
+    - modulos (definição de arquitetura)
     */
 
+    let mut alunos: Vec<(String, String, Vec<f32>)> = Vec::new();
 
     loop {
         print!("\n");
@@ -71,7 +145,7 @@ fn main(){
 
         match opcao {
             1 => {
-                mostrar_mensagem("Iniciando cadastro de aluno ");
+                cadastrar_aluno(&mut alunos);
             },
             2 => {
                 mostrar_mensagem("Iniciando alteração de aluno");               
@@ -80,7 +154,7 @@ fn main(){
                 mostrar_mensagem("Iniciando exclusão de aluno ");                
             },
             4 => {
-                mostrar_mensagem("listando alunos ");                
+                listar_alunos(&alunos);            
             },
             5 => {
                 println!("Saindo do programa...");
