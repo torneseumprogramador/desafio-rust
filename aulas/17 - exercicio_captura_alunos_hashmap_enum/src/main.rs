@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::io;
 use std::process::Command;
 use std::thread::sleep;
@@ -50,13 +51,12 @@ fn capturar_notas_aluno(nome_aluno: &String, notas: &mut Vec<f32>){
     return capturar_notas_aluno(nome_aluno, notas);
 }
 
-struct Aluno {
-    nome: String,
-    matricula: String,
-    notas: Vec<f32>
+enum InfoAluno {
+    Texto(String),
+    Lista(Vec<f32>),
 }
 
-fn cadastrar_aluno(alunos: &mut Vec<Aluno> ){
+fn cadastrar_aluno(alunos: &mut Vec<HashMap<String, InfoAluno>> ){
     let mut nome = String::new();
     let mut matricula = String::new();
     
@@ -71,25 +71,41 @@ fn cadastrar_aluno(alunos: &mut Vec<Aluno> ){
     let mut notas: Vec<f32> = Vec::new();
     capturar_notas_aluno(&nome, &mut notas);
 
-    alunos.push(Aluno {
-        nome: nome,
-        matricula: matricula,
-        notas: notas
-    });
+    let mut aluno:HashMap<String, InfoAluno> = HashMap::new();
+    aluno.insert("nome".to_string(), InfoAluno::Texto(nome));
+    aluno.insert("matricula".to_string(), InfoAluno::Texto(matricula));
+    aluno.insert("notas".to_string(), InfoAluno::Lista(notas));
+
+    alunos.push(aluno);
 }
 
-fn listar_alunos(alunos: &Vec<Aluno>){
+fn listar_alunos(alunos: &Vec<HashMap<String, InfoAluno>>){
     limpar_tela();
     if alunos.len() == 0 {
         mostrar_mensagem("Nenhum aluno cadastrado");
         return;
     }
 
-    for aluno in alunos.iter(){
+    for aluno_hash in alunos.iter(){
+        let nome = match aluno_hash.get("nome").unwrap() {
+            InfoAluno::Texto(valor) => valor,
+            _ => panic!("Valor não existente para nome"),
+        };
+
+        let matricula = match aluno_hash.get("matricula").unwrap() {
+            InfoAluno::Texto(valor) => valor,
+            _ => panic!("Valor não existente para nome"),
+        };
+
+        let notas = match aluno_hash.get("notas").unwrap() {
+            InfoAluno::Lista(valor) => valor,
+            _ => panic!("Valor não existente para nome"),
+        };
+
         println!("{}", "-".repeat(40));
-        println!("Nome: {}", aluno.nome);
-        println!("Matricula: {}", aluno.matricula);
-        println!("Notas: {:?}", aluno.notas);
+        println!("Nome: {}", nome);
+        println!("Matricula: {}", matricula);
+        println!("Notas: {:?}", notas);
     }
     
     println!("\n\nDigite enter para continuar...");
@@ -121,21 +137,17 @@ fn main(){
     o que colocar no cadastro de aluno
     nome, matricula, notas{vetor(f32)}
 
-    === Passo 3: ====
-    Agora que vc já conhece o struct, implemente os passos 2 e 3
-
 
 
     amanha
-    - Corrigir exercicio 3
+    - vericiar a parte 2 do exercicio dos alunos
+    - fazer correções sobre o exercicio
+    - o que é o hashmap e onde ele entra neste contexto
+    - o que é a struct e onde ela entra neste contexto
     - modulos (definição de arquitetura)
-    - melhorar o exercicio - separando em modulos
-    - enum (aprofundar um pouco mais)
-    - hashmap (aprofundar um pouco mais)
-    - struct (aprofundar um pouco mais) -> Métodos consigo fazer POO
     */
 
-    let mut alunos: Vec<Aluno> = Vec::new();
+    let mut alunos: Vec<HashMap<String, InfoAluno>> = Vec::new();
 
     loop {
         print!("\n");

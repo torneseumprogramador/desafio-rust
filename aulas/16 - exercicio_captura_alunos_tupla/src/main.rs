@@ -50,13 +50,7 @@ fn capturar_notas_aluno(nome_aluno: &String, notas: &mut Vec<f32>){
     return capturar_notas_aluno(nome_aluno, notas);
 }
 
-struct Aluno {
-    nome: String,
-    matricula: String,
-    notas: Vec<f32>
-}
-
-fn cadastrar_aluno(alunos: &mut Vec<Aluno> ){
+fn cadastrar_aluno(alunos: &mut Vec<(String, String, Vec<f32>)> ){
     let mut nome = String::new();
     let mut matricula = String::new();
     
@@ -71,25 +65,22 @@ fn cadastrar_aluno(alunos: &mut Vec<Aluno> ){
     let mut notas: Vec<f32> = Vec::new();
     capturar_notas_aluno(&nome, &mut notas);
 
-    alunos.push(Aluno {
-        nome: nome,
-        matricula: matricula,
-        notas: notas
-    });
+    alunos.push((nome, matricula, notas));
 }
 
-fn listar_alunos(alunos: &Vec<Aluno>){
+fn listar_alunos(alunos: &Vec<(String, String, Vec<f32>)>){
     limpar_tela();
     if alunos.len() == 0 {
         mostrar_mensagem("Nenhum aluno cadastrado");
         return;
     }
 
-    for aluno in alunos.iter(){
+    for aluno_tupla in alunos.iter(){
+        let (nome, matricula, notas) = aluno_tupla;
         println!("{}", "-".repeat(40));
-        println!("Nome: {}", aluno.nome);
-        println!("Matricula: {}", aluno.matricula);
-        println!("Notas: {:?}", aluno.notas);
+        println!("Nome: {}", nome);
+        println!("Matricula: {}", matricula);
+        println!("Notas: {:?}", notas);
     }
     
     println!("\n\nDigite enter para continuar...");
@@ -121,21 +112,17 @@ fn main(){
     o que colocar no cadastro de aluno
     nome, matricula, notas{vetor(f32)}
 
-    === Passo 3: ====
-    Agora que vc já conhece o struct, implemente os passos 2 e 3
-
 
 
     amanha
-    - Corrigir exercicio 3
+    - vericiar a parte 2 do exercicio dos alunos
+    - fazer correções sobre o exercicio
+    - o que é o hashmap e onde ele entra neste contexto
+    - o que é a struct e onde ela entra neste contexto
     - modulos (definição de arquitetura)
-    - melhorar o exercicio - separando em modulos
-    - enum (aprofundar um pouco mais)
-    - hashmap (aprofundar um pouco mais)
-    - struct (aprofundar um pouco mais) -> Métodos consigo fazer POO
     */
 
-    let mut alunos: Vec<Aluno> = Vec::new();
+    let mut alunos: Vec<(String, String, Vec<f32>)> = Vec::new();
 
     loop {
         print!("\n");
