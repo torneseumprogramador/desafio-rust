@@ -29,11 +29,10 @@ fn main(){
     Agora que vc já conhece o struct, implemente os passos 2 e 3
 
 
-    Amanhã
+    amanha
     - enum (aprofundar um pouco mais)
     - hashmap (aprofundar um pouco mais)
     - struct (aprofundar um pouco mais) -> Métodos consigo fazer POO
-    
     - modulos separados em pastas
     - persistencia
     */
