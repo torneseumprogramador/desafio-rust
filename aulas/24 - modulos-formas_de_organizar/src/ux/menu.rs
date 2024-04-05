@@ -1,7 +1,7 @@
-use crate::entidades::Aluno;
-use crate::tela::{limpar_tela, mostrar_mensagem};
+use crate::models::aluno::Aluno;
+use crate::ux::tela::{limpar_tela, mostrar_mensagem};
 use std::io;
-use crate::logica_negocio::{ cadastrar_aluno, alterar_aluno, excluir_aluno, listar_alunos };
+use crate::alunos::{ cadastrar_aluno, alterar_aluno, excluir_aluno, listar_alunos };
 
 pub fn carregar(){
     let mut alunos: Vec<Aluno> = Vec::new();

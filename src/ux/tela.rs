@@ -20,7 +20,11 @@ pub fn esperar(tempo:u64){
 }
 
 pub fn mostrar_mensagem(mensagem: &str){
+    mostrar_mensagem_controlando_tempo(mensagem, 2)
+}
+
+pub fn mostrar_mensagem_controlando_tempo(mensagem: &str, tempo: u64){
     limpar_tela();
     println!("{}", mensagem);
-    esperar(2);
+    esperar(tempo);
 }

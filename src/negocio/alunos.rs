@@ -1,6 +1,6 @@
 use std::io;
-use crate::tela::{ limpar_tela, mostrar_mensagem };
-use crate::entidades::Aluno;
+use crate::ux::tela::{ limpar_tela, mostrar_mensagem, mostrar_mensagem_controlando_tempo };
+use crate::models::aluno::Aluno;
 
 pub fn capturar_notas_aluno(nome_aluno: &String, notas: &mut Vec<f32>){
     println!("Digite a nota do(a) {}: (ou 'fim' para concluir)", nome_aluno);
@@ -15,13 +15,13 @@ pub fn capturar_notas_aluno(nome_aluno: &String, notas: &mut Vec<f32>){
     let nota: f32 = match nota_str.trim().parse() {
         Ok(num) => num,
         Err(_) => {
-            mostrar_mensagem("Nota inválida, digite novamente ...");
+            mostrar_mensagem_controlando_tempo("Nota inválida, digite novamente ...", 1);
             return capturar_notas_aluno(nome_aluno, notas);
         },
     };
     notas.push(nota);
 
-    mostrar_mensagem("Nota adicionada com sucesso, vamos para a próxima nota ...");
+    mostrar_mensagem_controlando_tempo("Nota adicionada com sucesso, vamos para a próxima nota ...", 1);
 
     return capturar_notas_aluno(nome_aluno, notas);
 }
@@ -139,6 +139,8 @@ pub fn listar_alunos(alunos: &Vec<Aluno>){
         println!("Nome: {}", aluno.nome);
         println!("Matricula: {}", aluno.matricula);
         println!("Notas: {:?}", aluno.notas);
+        println!("Média: {:.2}", aluno.media());
+        println!("Situacao: {}", aluno.situacao());
     }
     
     println!("\n\nDigite enter para continuar...");
