@@ -1,11 +1,8 @@
-use crate::models::aluno::Aluno;
 use crate::ux::tela::{limpar_tela, mostrar_mensagem};
 use std::io;
 use crate::negocio::alunos::{ cadastrar_aluno, alterar_aluno, excluir_aluno, listar_alunos };
 
 pub fn carregar(){
-    let mut alunos: Vec<Aluno> = Vec::new();
-
     loop {
         print!("\n");
         println!("Digite uma das opção abaixo:");
@@ -27,16 +24,16 @@ pub fn carregar(){
 
         match opcao {
             1 => {
-                cadastrar_aluno(&mut alunos);
+                cadastrar_aluno();
             },
             2 => {
-                alterar_aluno(&mut alunos);     
+                alterar_aluno();     
             },
             3 => {
-                excluir_aluno(&mut alunos);            
+                excluir_aluno();            
             },
             4 => {
-                listar_alunos(&alunos);            
+                listar_alunos();            
             },
             5 => {
                 println!("Saindo do programa...");

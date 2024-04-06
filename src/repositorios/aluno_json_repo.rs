@@ -18,13 +18,36 @@ impl AlunoJsonRepo {
         return alunos;
     }
 
-    pub fn salvar(&self, aluno: Aluno) {
-        let mut alunos = self.todos();
-        alunos.push(aluno);
-
-        let alunos_json = serde_json::to_string(&alunos).expect("Erro ao converter dados em string Json");
+    fn salvar(&self, alunos: &Vec<Aluno>){
+        let alunos_json = serde_json::to_string(alunos).expect("Erro ao converter dados em string Json");
 
         let mut arquivo = File::create(&self.path).expect("Erro ao gravar arquivo json");
         arquivo.write_all(alunos_json.as_bytes()).expect("Erro ao gravar arquivo json");
+    }
+
+    pub fn incluir(&self, aluno: Aluno) {
+        let mut alunos = self.todos();
+        alunos.push(aluno);
+        self.salvar(&alunos);
+    }
+
+    pub fn alterar(&self, aluno: Aluno) {
+        let mut alunos = self.todos();
+
+        for aluno_db in alunos.iter_mut() {
+            if aluno_db.matricula == aluno.matricula {
+                aluno_db.nome = aluno.nome;
+                aluno_db.notas = aluno.notas;
+                break;
+            }
+        }
+
+        self.salvar(&alunos);
+    }
+
+    pub fn excluir(&self, matricula: &String) {
+        let mut alunos = self.todos();
+        alunos.retain(|a| a.matricula != *matricula);
+        self.salvar(&alunos);
     }
 }
