@@ -1,7 +1,9 @@
 use std::io;
 use crate::ux::tela::{ limpar_tela, mostrar_mensagem, mostrar_mensagem_controlando_tempo };
 use crate::models::aluno::Aluno;
-use crate::repositorios::aluno_json_repo::AlunoJsonRepo;
+// use crate::repositorios::aluno_json_repo::AlunoJsonRepo;
+use crate::repositorios::aluno_mysql_repo::AlunoMySqlRepo;
+use crate::config::configuration;
 
 pub fn capturar_notas_aluno(nome_aluno: &String, notas: &mut Vec<f32>){
     println!("Digite a nota do(a) {}: (ou 'fim' para concluir)", nome_aluno);
@@ -62,8 +64,8 @@ pub fn cadastrar_aluno(){
 pub fn alterar_aluno(){
     limpar_tela();
 
-    let alunos = repo().todos();
-    if alunos.len() == 0 {
+    let alunos = repo().todos(); //TODO um método count()
+    if alunos.len() == 0 { // TODO count == 0
         mostrar_mensagem("Nenhum aluno cadastrado");
         return;
     }
@@ -97,8 +99,8 @@ pub fn alterar_aluno(){
 
 pub fn excluir_aluno(){
     limpar_tela();
-    let alunos = repo().todos();
-    if alunos.len() == 0 {
+    let alunos = repo().todos(); //TODO um método count()
+    if alunos.len() == 0 { // TODO count == 0
         mostrar_mensagem("Nenhum aluno cadastrado");
         return;
     }
@@ -120,7 +122,7 @@ pub fn excluir_aluno(){
 }
 
 pub fn buscar_aluno_por_matricula(matricula: &str) -> Option<Aluno> {
-    let alunos = &repo().todos();
+    let alunos = &repo().todos(); //TODO Alteração no mysql para fazer um where ....
 
     for aluno in alunos.iter() {
         if aluno.matricula == matricula {
@@ -133,8 +135,8 @@ pub fn buscar_aluno_por_matricula(matricula: &str) -> Option<Aluno> {
 
 pub fn listar_alunos(){
     limpar_tela();
-    let alunos = repo().todos();
-    if alunos.len() == 0 {
+    let alunos = repo().todos(); //TODO um método count()
+    if alunos.len() == 0 { // TODO count == 0
         mostrar_mensagem("Nenhum aluno cadastrado");
         return;
     }
@@ -155,8 +157,14 @@ pub fn listar_alunos(){
     limpar_tela();
 }
 
-fn repo() -> AlunoJsonRepo {
-    AlunoJsonRepo{ 
-        path: String::from("db/alunos.json") 
-    }
+// fn repo() -> AlunoJsonRepo {
+//     let json_file = configuration::get_json_db_alunos_path();
+//     AlunoJsonRepo{ 
+//         path: String::from(json_file) 
+//     }
+// }
+
+fn repo() -> AlunoMySqlRepo {
+    let sql_connection = configuration::get_mysql_string_connection();
+    return AlunoMySqlRepo::new(&sql_connection);
 }
