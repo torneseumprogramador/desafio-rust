@@ -44,3 +44,31 @@ if condicao {
 # Aula 30/03/2022
 Prompt GPT exercicios:
 - https://chat.openai.com/share/9d5db18d-33d3-463a-b06a-bbc0a84bea29
+
+
+# Próximo tópido do treinamento
+
+- traits (interfaces)
+
+proximos
+- POO - Polimorfismo
+- Generics
+- ORM trabalhando com Generics
+- uso de ORMs existentes
+    - persistencia mysql
+    - persistencia postgres
+    - persistencia mongodb
+    - persistencia sqlite (db local)
+- lifetimes
+- metaprogramação - Macros ...
+- Testes
+- criar crates
+- Programação funcional vs POO vs programação estruturada
+- Concorrencia e paralelismo
+- Programação Asyncrona
+- Programação Web
+    - render server side
+    - API's
+- Docs
+- redis - Cache ou chave/valor
+- elasticsearch - Indexação e busca
