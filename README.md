@@ -47,11 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-
-- traits (interfaces)
+- POO - Polimorfismo
 
 proximos
-- POO - Polimorfismo
 - Generics
 - ORM trabalhando com Generics
 - uso de ORMs existentes
