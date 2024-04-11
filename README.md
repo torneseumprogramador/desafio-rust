@@ -47,10 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- POO - Polimorfismo
+- Generics
 
 proximos
-- Generics
 - ORM trabalhando com Generics
 - uso de ORMs existentes
     - persistencia mysql
