@@ -47,17 +47,22 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- Generics
+- ORM trabalhando com Generics ( Criar tabela )
 
 proximos
-- ORM trabalhando com Generics
+- ORM trabalhando com Generics ( Inserir tabela )
+- ORM trabalhando com Generics ( Updade tabela )
+- ORM trabalhando com Generics ( Delete tabela )
+- ORM trabalhando com Generics ( Select tabela )
+
 - uso de ORMs existentes
     - persistencia mysql
     - persistencia postgres
     - persistencia mongodb
     - persistencia sqlite (db local)
-- lifetimes
+    
 - metaprogramação - Macros ...
+- lifetimes
 - Testes
 - criar crates
 - Programação funcional vs POO vs programação estruturada
@@ -69,3 +74,4 @@ proximos
 - Docs
 - redis - Cache ou chave/valor
 - elasticsearch - Indexação e busca
+- ver a possibilidade Tauri? App Desktop
