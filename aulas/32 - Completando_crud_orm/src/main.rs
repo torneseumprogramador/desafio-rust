@@ -95,7 +95,7 @@ fn main(){
 
 
     println!("-------[aluno_por_id]------");
-    let aluno_por_id = repo_aluno.buscar_por_id(2);
+    let aluno_por_id = repo_aluno.buscar_por_id(1);
     println!("{:?}", aluno_por_id);
 
 

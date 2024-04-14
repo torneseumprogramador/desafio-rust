@@ -152,11 +152,13 @@ impl<T: TEntidade + Serialize> RepositorioORM<T> {
         self.where_query(String::new(), HashMap::new())
     }
 
-    pub fn buscar_por_id(&self, id: i32) -> T {
+    pub fn buscar_por_id(&self, id: i32) -> Option<T> {
         let mut params = HashMap::new();
         params.insert("id".to_string(), Value::Number(id.into()));
 
-        self.where_query("id = :id".to_string(), params).into_iter().next().unwrap()
+        let mut result = self.where_query("id = :id".to_string(), params);
+
+        result.into_iter().next()
     }
 
     pub fn where_query(&self, where_sql: String, params: HashMap<String, Value>) -> Vec<T> {
