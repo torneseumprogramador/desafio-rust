@@ -53,7 +53,9 @@ Prompt GPT exercicios:
 
 proximos
 - metaprogramação - Macros ...
+- mudar ORM para colocar macro
 - criar crates (interna para macro)
+- mudar sistema console para utilizar o nosso ORM
 - lifetimes
 - uso de ORMs existentes
     - persistencia mysql
@@ -72,3 +74,4 @@ proximos
 - redis - Cache ou chave/valor
 - elasticsearch - Indexação e busca
 - ver a possibilidade Tauri? App Desktop
+- deploy
