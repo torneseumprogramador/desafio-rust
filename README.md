@@ -47,12 +47,11 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- ORM trabalhando com Generics ( Inserir tabela ) - Refatoração bem grande
-
-proximos
 - ORM trabalhando com Generics ( Updade tabela )
 - ORM trabalhando com Generics ( Delete tabela )
 - ORM trabalhando com Generics ( Select tabela )
+
+proximos
 - metaprogramação - Macros ...
 - criar crates (interna para macro)
 - lifetimes
