@@ -47,12 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- ORM trabalhando com Generics ( Updade tabela )
-- ORM trabalhando com Generics ( Delete tabela )
-- ORM trabalhando com Generics ( Select tabela )
+- metaprogramação - Macros ...
 
 proximos
-- metaprogramação - Macros ...
 - mudar ORM para colocar macro
 - criar crates (interna para macro)
 - mudar sistema console para utilizar o nosso ORM
