@@ -50,6 +50,10 @@ Prompt GPT exercicios:
 - metaprogramação - Macros ...
 
 proximos
+- utilizar macro como decorador de propriedades
+- utilizar macro com crate separada dentro do projeto (cria uma crate)
+- macro do tipo derive
+
 - mudar ORM para colocar macro
 - criar crates (interna para macro)
 - mudar sistema console para utilizar o nosso ORM
