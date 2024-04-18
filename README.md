@@ -47,13 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- utilizar macro como decorador de propriedades
-- utilizar macro com crate separada dentro do projeto (cria uma crate)
-- macro do tipo derive
+- mudar sistema console para utilizar o nosso ORM
 
 proximos
-- mudar ORM para colocar macro
-- mudar sistema console para utilizar o nosso ORM
 - lifetimes
 - uso de ORMs existentes
     - persistencia mysql
