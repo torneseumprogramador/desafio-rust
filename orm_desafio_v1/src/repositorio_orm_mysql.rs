@@ -154,4 +154,11 @@ impl<T: TEntidade + Debug + Serialize + for<'de> Deserialize<'de> + Default> Rep
         conn.exec_drop(sql, mysql_params).expect("Failed to insert data.");
         conn.last_insert_id() as i32
     }
+
+    pub fn count(&self) -> i32 {
+        let mut conn = self.get_conn();
+        let sql = T::generate_sql_select_count();
+        let result: Option<i32> = conn.query_first(sql).expect("Query failed.");
+        result.expect("No count result found.")
+    }
 }

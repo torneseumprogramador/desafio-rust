@@ -9,4 +9,5 @@ pub trait TEntidade {
     fn generate_sql_update() -> String;
     fn generate_sql_delete() -> String;
     fn generate_sql_select() -> String;
+    fn generate_sql_select_count() -> String;
 }

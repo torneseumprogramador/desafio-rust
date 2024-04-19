@@ -4,7 +4,7 @@ macro_rules! create_struct_and_metadata_com_sql_methods {
         use crate::orm_desafio_v1::traits::TEntidade;
         use serde::{Serialize, Deserialize};
 
-        #[derive(Debug, Default, Serialize, Deserialize)]
+        #[derive(Debug, Default, Serialize, Deserialize, Clone)]
         pub struct $struct_name {
             $(pub $field_name: $field_type,)*
         }
@@ -62,6 +62,10 @@ macro_rules! create_struct_and_metadata_com_sql_methods {
 
             fn generate_sql_select() -> String {
                 format!("SELECT * FROM {}", $table_name)
+            }
+
+            fn generate_sql_select_count() -> String {
+                format!("SELECT count(1) FROM {}", $table_name)
             }
         }
     };
