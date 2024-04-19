@@ -47,10 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- mudar sistema console para utilizar o nosso ORM
+- lifetimes
 
 proximos
-- lifetimes
 - uso de ORMs existentes
     - persistencia mysql
     - persistencia postgres
