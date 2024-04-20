@@ -1,4 +1,8 @@
 {
     "rust-analyzer.showUnlinkedFileNotification": false,
-    "rust-analyzer.checkOnSave": false
+    "rust-analyzer.checkOnSave": false,
+    "files.associations": {
+        "stdio.h": "c",
+        "charconv": "c"
+    }
 }

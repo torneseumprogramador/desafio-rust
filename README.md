@@ -47,14 +47,13 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- lifetimes
-
-proximos
 - uso de ORMs existentes
     - persistencia mysql
     - persistencia postgres
     - persistencia mongodb
     - persistencia sqlite (db local)
+    
+proximos
 - Testes
 - Criar crates (publicando no crates.io)
 - Programação funcional vs POO vs programação estruturada
