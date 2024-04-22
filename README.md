@@ -48,8 +48,6 @@ Prompt GPT exercicios:
 
 # Próximo tópido do treinamento
 - uso de ORMs existentes
-    - persistencia mysql
-    - persistencia postgres
     - persistencia mongodb
     - persistencia sqlite (db local)
     
