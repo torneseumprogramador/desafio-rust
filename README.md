@@ -47,12 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- uso de ORMs existentes
-    - persistencia mongodb
-    - persistencia sqlite (db local)
+- Testes
     
 proximos
-- Testes
 - Criar crates (publicando no crates.io)
 - Programação funcional vs POO vs programação estruturada
 - Concorrencia e paralelismo

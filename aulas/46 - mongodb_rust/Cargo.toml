@@ -1,0 +1,12 @@
+[package]
+name = "console"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+mongodb = "2.8.2"
+tokio = "1.37.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bson = "2.2.0"
+futures-util = "0.3"
