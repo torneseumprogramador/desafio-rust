@@ -47,16 +47,17 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- Testes
+- Criar crates (publicando no crates.io)
     
 proximos
-- Criar crates (publicando no crates.io)
 - Programação funcional vs POO vs programação estruturada
 - Concorrencia e paralelismo
 - Programação Asyncrona
 - Programação Web
     - render server side
     - API's
+    - Testes de request
+    - Testes de Comportamento (End to End)
 - Docs
 - redis - Cache ou chave/valor
 - elasticsearch - Indexação e busca
