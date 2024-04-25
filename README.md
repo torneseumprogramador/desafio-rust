@@ -47,10 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- Criar crates (publicando no crates.io)
+- Programação funcional vs POO vs programação estruturada
     
 proximos
-- Programação funcional vs POO vs programação estruturada
 - Concorrencia e paralelismo
 - Programação Asyncrona
 - Programação Web

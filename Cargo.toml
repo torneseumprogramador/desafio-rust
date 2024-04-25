@@ -4,8 +4,3 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-##### crates.io #### Para acesso publico
-validador_cpf = "1.0.2"
-
-##### github.com ##### Para acesso privado - Quando quero deixar em um repo privado da empresa
-# validador_cpf = { git = "https://github.com/torneseumprogramador/validador_cpf_desafio_rust.git", branch = "main" }
