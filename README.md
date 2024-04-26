@@ -47,10 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- Programação funcional vs POO vs programação estruturada
+- Concorrencia e paralelismo
     
 proximos
-- Concorrencia e paralelismo
 - Programação Asyncrona
 - Programação Web
     - render server side
