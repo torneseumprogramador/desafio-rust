@@ -47,10 +47,9 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- Concorrencia e paralelismo
+- Programação Asyncrona
     
 proximos
-- Programação Asyncrona
 - Programação Web
     - render server side
     - API's
