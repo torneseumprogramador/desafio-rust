@@ -47,16 +47,13 @@ Prompt GPT exercicios:
 
 
 # Próximo tópido do treinamento
-- Programação Asyncrona
-    
-proximos
 - Programação Web
     - render server side
     - API's
     - Testes de request
     - Testes de Comportamento (End to End)
+
+proximos
 - Docs
-- redis - Cache ou chave/valor
-- elasticsearch - Indexação e busca
 - ver a possibilidade Tauri? App Desktop
 - deploy
