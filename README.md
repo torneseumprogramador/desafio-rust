@@ -52,8 +52,8 @@ Prompt GPT exercicios:
     - API's
     - Testes de request
     - Testes de Comportamento (End to End)
+    - Tauri
 
 proximos
 - Docs
-- ver a possibilidade Tauri? App Desktop
 - deploy
