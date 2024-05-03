@@ -181,4 +181,39 @@ impl<T: TEntidade + Debug + Serialize + for<'de> Deserialize<'de> + Default> Rep
         let result: Option<i32> = conn.query_first(sql).expect("Query failed.");
         result.expect("No count result found.")
     }
+
+    pub fn exec_sql_to_hashmap_vec(&self, sql: &str) -> Result<Vec<HashMap<String, String>>, mysql::Error> {
+        let mut conn = self.pool.get_conn()?;
+        let selected_rows: Vec<Row> = conn.query(sql)?;
+
+        let mut result_vec = Vec::new();
+        for row in selected_rows.into_iter() {
+            let columns = row.columns_ref();
+            let mut row_map = HashMap::new();
+
+            let cloned_row = row.clone();
+            let values = cloned_row.unwrap();
+
+            for (idx, value) in values.into_iter().enumerate() {
+                let column_name = columns[idx].name_str().to_string();
+                let value_str = match value {
+                    mysql::Value::Bytes(v) => String::from_utf8_lossy(&v).to_string(),
+                    mysql::Value::Int(i) => i.to_string(),
+                    mysql::Value::Float(f) => f.to_string(),
+                    mysql::Value::NULL => "NULL".to_string(),
+                    mysql::Value::Date(year, month, day, hour, minute, second, micro) =>
+                        format!("{:04}-{:02}-{:02} {:02}:{:02}:{:02}.{:06}", year, month, day, hour, minute, second, micro),
+                    mysql::Value::Time(negative, days, hours, minutes, seconds, microseconds) =>
+                        format!("{}{} day(s) {:02}:{:02}:{:02}.{:06}", if negative { "-" } else { "" }, days, hours, minutes, seconds, microseconds),
+                    _ => "Unsupported type".to_string(),
+                };
+
+                row_map.insert(column_name, value_str);
+            }
+
+            result_vec.push(row_map);
+        }
+
+        Ok(result_vec)
+    }
 }

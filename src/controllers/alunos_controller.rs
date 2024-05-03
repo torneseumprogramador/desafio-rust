@@ -6,8 +6,10 @@ use rocket::form::Form;
 
 #[get("/alunos")]
 pub fn index() -> Template {
+    let alunos_completo = aluno_servico::todos_melhor();
+    
     let (alunos, alunos_notas, alunos_media, alunos_situacao) = aluno_servico::todos();
-    Template::render("alunos/index", context! { alunos: alunos, alunos_notas: alunos_notas, alunos_media: alunos_media, alunos_situacao: alunos_situacao })
+    Template::render("alunos/index", context! { alunos: alunos, alunos_notas: alunos_notas, alunos_media: alunos_media, alunos_situacao: alunos_situacao, alunos_completo: alunos_completo })
 }
 
 #[post("/alunos/<id>")]

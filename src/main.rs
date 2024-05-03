@@ -6,9 +6,9 @@ use rocket_dyn_templates::Template;
 mod controllers;
 mod dtos;
 mod config;
-// mod filtros; TODO
 mod models;
 mod servicos;
+mod model_views;
 
 #[launch]
 fn rocket() -> _ {

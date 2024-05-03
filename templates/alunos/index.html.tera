@@ -25,6 +25,35 @@
             </tr>
         </thead>
         <tbody>
+            {% for aluno in alunos_completo %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="py-4 px-6">{{ aluno.id }}</td>
+                <td class="py-4 px-6">{{ aluno.nome }}</td>
+                <td class="py-4 px-6">{{ aluno.matricula }}</td>
+                <td class="py-4 px-6">
+                    <ul>
+                        {% for nota in aluno.notas %}
+                            <li>Nota: {{ nota | round(precision=1) }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td class="py-4 px-6">
+                    <div><b>Média: </b> {{ aluno.media | round(precision=1) }}</div>
+                    <div><b>Situação: </b> {{ aluno.situacao }}</div>
+                </td>
+                <td class="py-4 px-6" style="width: 150px;">
+                    <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Alterar</button>
+                    <form style="display: inline;" onsubmit="return confirm('Confirma?')" method="post" action="/alunos/{{ aluno.id }}">
+                        <button class="font-medium text-red-600 dark:text-red-500 hover:underline">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            
+            <tr colspan="6">
+                <td>  </td>
+            </tr>
+
             {% for aluno in alunos %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="py-4 px-6">{{ aluno.id }}</td>
