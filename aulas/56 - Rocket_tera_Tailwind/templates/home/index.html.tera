@@ -1,6 +1,7 @@
 
 {% extends "layouts/application" %}
 
+
 {% block title %}
   App Rust Rocket + Tera
 {% endblock title %}

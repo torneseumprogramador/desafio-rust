@@ -1,6 +1,7 @@
 
 {% extends "layouts/application" %}
 
+
 {% block title %}
     Novo Alunos
 {% endblock title %}

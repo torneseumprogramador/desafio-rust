@@ -1,6 +1,7 @@
 
 {% extends "layouts/application" %}
 
+
 {% block title %}
     Lista de alunos
 {% endblock title %}
