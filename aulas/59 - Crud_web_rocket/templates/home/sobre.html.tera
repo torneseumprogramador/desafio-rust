@@ -1,0 +1,32 @@
+
+{% extends "layouts/application" %}
+
+
+{% block title %}
+ Sobre a Aplicação
+{% endblock title %}
+
+{% block content %}
+  <!--Left Col-->
+  <div class="justify-center lg:items-start overflow-y-hidden">
+    <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+      Sobre o 
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
+        Desafio de Rust
+      </span>
+    </h1>
+    <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
+      Olá! Eu sou Danilo Aparecido, fundador da comunidade "Torne-se um Programador". Estou comprometido em compartilhar conhecimento e experiência com aspirantes a programadores e entusiastas da tecnologia através de nossas sessões de treinamento ao vivo.
+      <br>
+      Nossos treinamentos ao vivo são transmitidos diretamente pelo YouTube, permitindo que você aprenda e interaja em tempo real. Cada sessão é projetada para ser prática e envolvente, cobrindo tópicos que vão desde fundamentos de programação até as mais avançadas técnicas de desenvolvimento.
+      <br>
+      Participe de nossas transmissões ao vivo para aprimorar suas habilidades, aprender novas tecnologias e fazer parte de uma comunidade vibrante de programadores. Junte-se a nós no caminho para se tornar um programador competente e confiante!
+    </p>
+    <p class="leading-normal">
+      Para mais acesse <a href="https://www.torneseumprogramador.com.br/cursos/desafio_rust" target="_blank">https://www.torneseumprogramador.com.br</a>
+    </p>
+  </div>
+{% endblock content %}
+{% block footer %}
+  <!-- Aqui pode ir os arquivos .js do template-->
+{% endblock footer %}

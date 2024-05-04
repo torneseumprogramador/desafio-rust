@@ -1,0 +1,37 @@
+
+{% extends "layouts/application" %}
+
+
+{% block title %}
+  App Rust Rocket + Tera
+{% endblock title %}
+
+{% block content %}
+  <!--Left Col-->
+  <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+    <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+      Desafio
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
+        de Rust
+      </span>
+      aplicação Web
+    </h1>
+    <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
+      Está é uma aplicação feita com Rust + Rocket + Tera, objetivo em estudarmos o framework<br>
+    </p>
+    <p class="leading-normal">
+      {{titulo}}
+    </p>
+    <p class="leading-normal">
+      Para mais acesse <a href="https://www.torneseumprogramador.com.br/cursos/desafio_rust" target="_blank">https://www.torneseumprogramador.com.br</a>
+    </p>
+  </div>
+
+  <!--Right Col-->
+  <div class="w-full xl:w-3/5 p-12 overflow-hidden">
+    <img class="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6" src="/static/macbook.svg" />
+  </div>
+{% endblock content %}
+{% block footer %}
+  <!-- Aqui pode ir os arquivos .js do template-->
+{% endblock footer %}

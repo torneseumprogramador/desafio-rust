@@ -1,0 +1,11 @@
+[global]
+profile = "debug"
+address = "127.0.0.1"
+port = 8000
+workers = 1
+
+[debug]
+# Configurações específicas para o perfil de debug
+
+[release]
+# Configurações específicas para o perfil de release
