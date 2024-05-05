@@ -2,6 +2,7 @@
 extern crate orm_desafio_v1;
 use rocket::fs::{FileServer, relative};
 use rocket_dyn_templates::Template;
+use middlewares::authentication::CookieAuthFairing;
 
 mod controllers;
 mod dtos;
@@ -9,6 +10,8 @@ mod config;
 mod models;
 mod servicos;
 mod model_views;
+mod middlewares;
+
 
 #[launch]
 fn rocket() -> _ {
@@ -18,6 +21,9 @@ fn rocket() -> _ {
             controllers::home_controller::index,
             controllers::home_controller::sobre,
 
+            controllers::login_controller::index,
+            controllers::login_controller::logar,
+
             controllers::alunos_controller::index,
             controllers::alunos_controller::excluir,
             controllers::alunos_controller::novo,
@@ -26,4 +32,5 @@ fn rocket() -> _ {
             controllers::alunos_controller::alterar,
         ])
         .attach(Template::fairing())
+        .attach(CookieAuthFairing) // Anexar o Fairing de autenticação via cookie
 }
