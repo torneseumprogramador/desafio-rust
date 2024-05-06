@@ -185,10 +185,6 @@ impl<T: TEntidade + Debug + Serialize + for<'de> Deserialize<'de> + Default> Rep
     pub fn exec_sql_to_hashmap_vec(&self, sql: &str) -> Result<Vec<HashMap<String, String>>, mysql::Error> {
         let mut conn = self.pool.get_conn()?;
 
-        println!("======TODO=====");
-        println!("{}",sql);
-        println!("===========");
-
         let selected_rows: Vec<Row> = conn.query(sql)?;
 
         let mut result_vec = Vec::new();
