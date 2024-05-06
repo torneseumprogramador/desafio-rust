@@ -1,5 +1,5 @@
 
-{% extends "layouts/application" %}
+{% extends "layouts/login_application" %}
 
 
 {% block title %}

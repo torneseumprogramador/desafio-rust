@@ -47,6 +47,7 @@ impl Fairing for CookieAuthFairing {
 fn validate_cookie(cookie_header: &str) -> bool {
     println!("===== Raw Cookie Header: {} =====", cookie_header);
     if cookie_header.contains("user_rocket_id=") {
+        // TODO pegar o valor do cookie por regex e fazer o deserialze do token JWT para o id o usuario e consultar no banco de dados se o usuário existe
         return true;
     }
 

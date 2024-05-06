@@ -29,16 +29,8 @@
             Rust<span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">Tera</span>
           </a>
 
-          <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-1xl lg:text-2xl" href="/sobre">
-            Sobre
-          </a>
-
-          <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-1xl lg:text-2xl" href="/alunos">
-            Alunos
-          </a>
-
-          <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-1xl lg:text-2xl" href="/sair">
-            Sair
+          <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-1xl lg:text-2xl" href="/login">
+            Login
           </a>
 
           <div class="flex w-1/2 justify-end content-center">

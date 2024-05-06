@@ -23,6 +23,7 @@ fn rocket() -> _ {
 
             controllers::login_controller::index,
             controllers::login_controller::logar,
+            controllers::login_controller::sair,
 
             controllers::alunos_controller::index,
             controllers::alunos_controller::excluir,
