@@ -13,6 +13,9 @@ impl Fairing for AuthFairing {
     }
 
     async fn on_request(&self, request: &mut Request<'_>, _: &mut Data<'_>) {
+        if request.method() == Method::Options {
+            return;
+        }
 
         let request_path = request.uri().path();
         // Lista de rotas com metch exato que não requerem autenticação

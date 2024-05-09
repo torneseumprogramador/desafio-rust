@@ -12,6 +12,11 @@ pub fn index() -> Json<Vec<AlunoView>> {
     Json(alunos)
 }
 
+#[options("/alunos")]
+pub fn option_alunos() -> status::Custom<Json<()>> {
+    status::Custom(Status::NoContent, Json(()))
+}
+
 #[get("/alunos/<id>")]
 pub fn show(id: i32) -> status::Custom<Json<Option<AlunoView>>> {
     match aluno_servico::buscar_por_id(id) {

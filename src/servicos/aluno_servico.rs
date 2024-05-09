@@ -179,33 +179,37 @@ pub fn todos() -> Vec<AlunoView> {
     let mut alunos: Vec<AlunoView> = Vec::new();
     let repo = repo_aluno();
 
-    match repo.exec_sql_to_hashmap_vec("SELECT alunos.id, alunos.nome, alunos.matricula, alunos_notas.nota FROM alunos INNER JOIN alunos_notas ON alunos_notas.aluno_id = alunos.id order by alunos.id asc") {
+    match repo.exec_sql_to_hashmap_vec("SELECT alunos.id, alunos.nome, alunos.matricula, alunos_notas.nota FROM alunos INNER JOIN alunos_notas ON alunos_notas.aluno_id = alunos.id ORDER BY alunos.nome ASC") {
         Ok(rows) => {
-            let mut aluno_map: HashMap<i32, AlunoView> = HashMap::new();
-            
+            let mut temp_map: HashMap<i32, (usize, AlunoView)> = HashMap::new();
+            let mut index = 0;
+
             for row in rows {
                 let id = row.get("id").and_then(|id| id.parse::<i32>().ok()).unwrap_or_default();
                 let nome = row.get("nome").cloned().unwrap_or_default();
                 let matricula = row.get("matricula").cloned().unwrap_or_default();
                 let nota: f32 = row.get("nota").and_then(|n| n.parse().ok()).unwrap_or(0.0);
 
-                let aluno = aluno_map.entry(id).or_insert_with(|| AlunoView {
+                let entry = temp_map.entry(id).or_insert_with(|| (index, AlunoView {
                     id,
                     nome: nome.clone(),
                     matricula: matricula.clone(),
                     notas: Vec::new(),
                     media: 0.0,
                     situacao: String::new()
-                });
+                }));
 
-                aluno.notas.push(nota);
+                entry.1.notas.push(nota); // pegando a segunda posição da tupla
+                index += 1;
             }
-            
-            for (_, mut aluno) in aluno_map {
-                if !aluno.notas.is_empty() {
-                    (aluno.media, aluno.situacao) = get_media_situacao(&aluno.notas);
-                }
 
+            let mut sorted_alunos: Vec<_> = temp_map.into_iter().map(|(_, v)| v).collect();
+            sorted_alunos.sort_by_key(|(idx, _)| *idx);
+
+            for (_, mut aluno) in sorted_alunos {
+                let (media, situacao) = get_media_situacao(&aluno.notas);
+                aluno.media = media;
+                aluno.situacao = situacao;
                 alunos.push(aluno);
             }
         },

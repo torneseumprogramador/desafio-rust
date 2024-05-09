@@ -1,6 +1,7 @@
 #[macro_use] extern crate rocket;
 extern crate orm_desafio_v1;
 use middlewares::auth_fairing::AuthFairing;
+use rocket::http::Status;
 use middlewares::cors::Cors;
 
 mod controllers;
@@ -16,6 +17,11 @@ use crate::servicos::usuario_servico;
 use crate::models::usuario::Usuario;
 use crate::orm_desafio_v1::repositorio_orm_mysql::RepositorioOrmMySql;
 */
+
+#[options("/<_..>")]
+fn all_options() -> Status {
+    Status::Ok
+}
 
 #[launch]
 fn rocket() -> _ {
@@ -35,6 +41,8 @@ fn rocket() -> _ {
 
     rocket::build()
         .mount("/", routes![
+            all_options,
+
             controllers::home_controller::index,
 
             controllers::login_controller::logar,

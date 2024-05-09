@@ -38,6 +38,11 @@ pub fn logar(login_dto: Json<LoginDto>) -> Result< status::Custom<Json<UsuarioVi
     }
 }
 
+#[options("/logar")]
+pub fn option_logar() -> status::Custom<Json<()>> {
+    status::Custom(Status::NoContent, Json(()))
+}
+
 #[get("/nao_autorizado")]
 pub fn unauthorized() -> status::Custom<Json<ErrorView>> {
     status::Custom(Status::Unauthorized, Json(ErrorView {
