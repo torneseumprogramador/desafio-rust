@@ -1,6 +1,8 @@
+extern crate orm_desafio_v1;
 mod config;
 mod handlers;
 mod models;
+mod services;
 
 use actix_web::{App, HttpServer};
 use crate::config::load_config;
