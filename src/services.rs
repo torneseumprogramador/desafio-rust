@@ -5,6 +5,9 @@ use crate::orm_desafio_v1::repositorio_orm_mysql::RepositorioOrmMySql;
 use crate::models::AlunoDto;
 use crate::config;
 use std::collections::HashMap;
+use crate::models::Usuario;
+use bcrypt::{hash, DEFAULT_COST, verify, BcryptError};
+use crate::models::LoginDto;
 
 pub struct AlunoServico;
 impl AlunoServico {
@@ -244,5 +247,85 @@ impl AlunoServico {
     fn repo_nota() -> RepositorioOrmMySql::<AlunoNota> {
         let sql_connection = config::get_mysql_string_connection();
         return RepositorioOrmMySql::<AlunoNota>::new(&sql_connection);
+    }
+}
+
+pub struct UsuarioServico;
+impl UsuarioServico {
+    pub fn incluir(usuario: Usuario) -> Result<i32, String> {
+        if usuario.nome.is_empty() {
+            return Err(String::from("O nome é obrigatório"));
+        }
+
+        if usuario.email.is_empty() {
+            return Err(String::from("A email é obrigatória"));
+        }
+
+        if usuario.senha.is_empty() {
+            return Err(String::from("A senha é obrigatória"));
+        }
+
+        let senha_cripto = UsuarioServico::criptografa_senha(&usuario.senha);
+
+        let usuario_senha_criptografada = Usuario {
+            id: 0,
+            nome: usuario.nome,
+            email: usuario.email,
+            senha: senha_cripto
+        };
+
+        let aluno_id = UsuarioServico::repo().incluir(&usuario_senha_criptografada);
+        Ok(aluno_id)
+    }
+
+    fn criptografa_senha(senha: &str) -> String {
+        hash(senha, DEFAULT_COST).unwrap()
+    }
+
+    fn repo() -> RepositorioOrmMySql::<Usuario> {
+        let sql_connection = config::get_mysql_string_connection();
+        return RepositorioOrmMySql::<Usuario>::new(&sql_connection);
+    }
+}
+
+
+pub struct LoginServico;
+impl LoginServico {
+    pub fn logar(login_dto: LoginDto) -> Result<Usuario, String>{
+        if login_dto.email.is_empty() {
+            return Err(String::from("O email é obrigatório"));
+        }
+
+        if login_dto.senha.is_empty() {
+            return Err(String::from("A senha é obrigatória"));
+        }
+        
+        let sql_connection = config::get_mysql_string_connection();
+        let repo = RepositorioOrmMySql::<Usuario>::new(&sql_connection);
+
+        let usuarios = repo.where_query("email = :email".to_string(), &HashMap::from([
+            ("email".to_string(), login_dto.email),
+        ]));
+
+        if usuarios.len() == 0  {
+            return Err(String::from("Email ou senha inválidos"));
+        }
+
+        let usuario = usuarios[0].clone();
+        match LoginServico::senha_valida(&usuario.senha, &login_dto.senha) {
+            Ok(validado) => {
+                if validado {
+                    Ok(usuario)
+                }
+                else {
+                    Err(String::from("Email ou senha inválidos"))
+                }
+            },
+            Err(_) => Err(String::from("Email ou senha inválidos"))
+        }
+    }
+
+    fn senha_valida(senha_db: &str, senha_dto: &str) -> Result<bool, BcryptError> {
+        verify(senha_dto, senha_db)
     }
 }

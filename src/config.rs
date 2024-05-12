@@ -2,6 +2,7 @@ use config::{Config, ConfigError, File, Environment};
 use serde::Deserialize;
 use actix_web::web;
 use crate::handlers;
+use crate::middleware::AuthMiddleware;
 use std::env;
 
 pub fn get_mysql_string_connection() -> String {
@@ -35,8 +36,14 @@ pub struct ServerData {
 }
 
 #[derive(Debug, Deserialize)]
+pub struct JwtConfig {
+    pub secret: String,
+}
+
+#[derive(Debug, Deserialize)]
 pub struct AppConfig {
     pub server: ServerData,
+    pub jwt: JwtConfig,
 }
 
 pub fn load_config() -> Result<AppConfig, ConfigError> {
@@ -48,9 +55,14 @@ pub fn load_config() -> Result<AppConfig, ConfigError> {
 
 pub fn routes(cfg: &mut web::ServiceConfig) {
     cfg.route("/", web::get().to(handlers::index));
-    cfg.route("/alunos", web::get().to(handlers::alunos_index));
-    cfg.route("/alunos/{id}", web::get().to(handlers::alunos_show));
-    cfg.route("/alunos/{id}", web::put().to(handlers::alunos_atualizar));
-    cfg.route("/alunos/{id}", web::delete().to(handlers::alunos_apagar));
-    cfg.route("/alunos", web::post().to(handlers::alunos_criar));
+    cfg.route("/logar", web::post().to(handlers::logar));
+    cfg.service(
+        web::scope("/alunos")
+            .wrap(AuthMiddleware)
+            .route("", web::get().to(handlers::alunos_index))
+            .route("", web::post().to(handlers::alunos_criar))
+            .route("/{id}", web::get().to(handlers::alunos_show))
+            .route("/{id}", web::put().to(handlers::alunos_atualizar))
+            .route("/{id}", web::delete().to(handlers::alunos_apagar))
+    );
 }

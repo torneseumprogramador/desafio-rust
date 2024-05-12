@@ -3,6 +3,8 @@ mod config;
 mod handlers;
 mod models;
 mod services;
+mod jwt;
+mod middleware;
 
 use actix_web::{App, HttpServer};
 use crate::config::load_config;

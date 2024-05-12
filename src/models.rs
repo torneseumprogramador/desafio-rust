@@ -18,6 +18,15 @@ create_struct_and_metadata_com_sql_methods! {
     }
 }
 
+create_struct_and_metadata_com_sql_methods! {
+    "usuarios" => Usuario {
+        id: i32, "autoincrement",
+        nome: String, "varchar(150)",
+        email: String, "varchar(255)",
+        senha: String, "varchar(100)"
+    }
+}
+
 #[derive(Debug, Default, Serialize)]
 pub struct AlunoView {
     pub id: i32,
@@ -43,6 +52,20 @@ pub struct AlunoDto {
 #[derive(Serialize)]
 pub struct ErrorView {
     pub mensagem: String,
+}
+
+#[derive(serde::Deserialize)]
+pub struct LoginDto {
+    pub email: String,
+    pub senha: String
+}
+
+#[derive(Debug, Default, Serialize)]
+pub struct UsuarioView {
+    pub id: i32,
+    pub nome: String,
+    pub email: String,
+    pub token: String,
 }
 
 #[cfg(test)]
