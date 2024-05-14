@@ -48,9 +48,7 @@ Prompt GPT exercicios:
 
 # Próximo tópido do treinamento
 - Programação Web
-    - Testes de request
-    - Testes de Comportamento (End to End)
-    - Tide, Warp, Axum, Tauri
+    - Warp, Axum, Tauri
 
 proximos
 - Docs
