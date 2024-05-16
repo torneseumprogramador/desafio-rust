@@ -48,7 +48,7 @@ Prompt GPT exercicios:
 
 # Próximo tópido do treinamento
 - Programação Web
-    - Axum, Tauri
+    - Tauri
 
 proximos
 - Docs
