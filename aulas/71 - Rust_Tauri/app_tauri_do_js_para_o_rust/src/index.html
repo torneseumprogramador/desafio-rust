@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Aplicação Tauri</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        table, th, td {
+            border: 1px solid black;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Olá, Tauri!</h1>
+    <input type="text" placeholder="Digite o nome aqui" id="nome">
+    <button onclick="escreve_nome_no_rust()">Clique</button>
+
+    <hr>
+    <button onclick="retorno_do_rust()">Retorno do rust</button>
+    <button onclick="adiciona_na_lista()">adiciona_na_lista</button>
+    <div id="tabelaClientes"></div>
+
+    <script src='index.js'></script>
+</body>
+</html>

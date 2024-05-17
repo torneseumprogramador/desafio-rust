@@ -1,0 +1,9 @@
+{
+  "name": "minha-aplicacao-tauri",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@tauri-apps/cli": "^1.5.14"
+  }
+}
